@@ -4,12 +4,27 @@ namespace AKlump\JsonSchema\Helper;
 
 use AKlump\JsonSchema\Exception\UnmergeableSchemaException;
 
+/**
+ * Class MergeArray
+ *
+ * Handles merging of array values based on specified merge rules.
+ */
 class MergeArray {
 
+  /**
+   * @param array $value An array value to merge per $merge_rule.
+   * @param int $merge_rule One of MergeRules::*
+   *
+   * @return array|false|mixed|string
+   * @throws \AKlump\JsonSchema\Exception\UnmergeableSchemaException
+   * @see \AKlump\JsonSchema\Helper\MergeRules
+   *
+   */
   public function __invoke(array $value, int $merge_rule) {
     switch ($merge_rule) {
       case MergeRules::EXACT_MATCH_SCALAR:
         if (count(array_unique($value)) !== 1) {
+          $value = array_unique($value);
           throw new UnmergeableSchemaException(sprintf('Cannot merge inexact values: %s', implode(', ', $value)));
         }
 
