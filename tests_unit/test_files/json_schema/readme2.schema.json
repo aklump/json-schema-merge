@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "JSON Schema Merge Example",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "description"
+  ]
+}
